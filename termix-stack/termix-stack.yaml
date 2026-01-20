@@ -11,10 +11,6 @@ services:
       - termix-data:/app/data
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          # - node.role == manager
-          # - node.hostname == polaris
       labels:
         - traefik.enable=true
         - traefik.http.routers.termix.rule=Host(`termix.kluhan.dev`)

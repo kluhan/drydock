@@ -1,0 +1,33 @@
+storage:
+  type: sqlite
+  path: /data/data.db
+
+endpoints:
+  - name: Komodo
+    group: core
+    url: "https://komodo.kluhan.dev/"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+      - "[CERTIFICATE_EXPIRATION] > 48h"
+
+  - name: Fenrir
+    group: hardware
+    url: "https://fenrir.kluhan.dev/"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: Draugr
+    group: hardware
+    url: "https://draugr.kluhan.dev/"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+
+  - name: TrueNAS
+    group: core
+    url: "https://true-nas.kluhan.dev/"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"

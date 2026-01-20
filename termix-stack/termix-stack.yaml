@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  termix:
+    image: ghcr.io/lukegus/termix:latest
+    networks:
+      - traefik-public
+    environment:
+      PORT: "8080"
+    volumes:
+      - termix-data:/app/data
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          # - node.role == manager
+          # - node.hostname == polaris
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.termix.rule=Host(`termix.kluhan.dev`)
+        - traefik.http.routers.termix.entrypoints=websecure
+        - traefik.http.routers.termix.tls=true
+        - traefik.http.routers.termix.tls.certresolver=letsencrypt
+        - traefik.http.services.termix.loadbalancer.server.port=8080
+      restart_policy:
+        condition: on-failure
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  termix-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.100.75,nfsvers=4,rw,noatime
+      device: ":/mnt/aegis/docker-volumes/termix-data"

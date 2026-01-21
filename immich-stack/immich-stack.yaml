@@ -106,7 +106,7 @@ volumes:
     driver_opts:
       type: nfs
       o: addr=192.168.100.75,nfsvers=4,rw,noatime
-      device: ":/mnt/aegis/docker-volumes/immich/uploads"
+      device: ":/mnt/aegis/docker-volumes/immich-uploads"
 
   immich-db:
 

@@ -110,9 +110,9 @@ volumes:
 
   immich-db:
 
-  immich-model-cache:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=192.168.100.75,nfsvers=4,rw,noatime
-      device: ":/mnt/aegis/docker-volumes/immich/model-cache"
+  # immich-model-cache:
+  #   driver: local
+  #   driver_opts:
+  #     type: nfs
+  #     o: addr=192.168.100.75,nfsvers=4,rw,noatime
+  #     device: ":/mnt/aegis/docker-volumes/immich/model-cache"

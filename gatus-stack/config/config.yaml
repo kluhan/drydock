@@ -39,4 +39,11 @@ endpoints:
     conditions:
       - "[STATUS] == 200"
 
+  - name: Immich
+    group: service
+    url: "https://immich.kluhan.dev/"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
       

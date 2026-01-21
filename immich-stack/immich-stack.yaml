@@ -23,15 +23,15 @@ services:
       placement:
         constraints:
           - node.hostname == polaris
-        labels:
-          - traefik.enable=true
-          - traefik.http.routers.immich.rule=Host(`immich.kluhan.dev`)
-          - traefik.http.routers.immich.entrypoints=websecure
-          - traefik.http.routers.immich.tls=true
-          - traefik.http.routers.immich.tls.certresolver=letsencrypt
-          - traefik.http.services.immich.loadbalancer.server.port=2283
-        restart_policy:
-          condition: on-failure
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.immich.rule=Host(`immich.kluhan.dev`)
+        - traefik.http.routers.immich.entrypoints=websecure
+        - traefik.http.routers.immich.tls=true
+        - traefik.http.routers.immich.tls.certresolver=letsencrypt
+        - traefik.http.services.immich.loadbalancer.server.port=2283
+      restart_policy:
+        condition: on-failure
   immich-machine-learning:
     image: 'ghcr.io/immich-app/immich-machine-learning:release'
     networks:

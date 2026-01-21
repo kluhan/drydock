@@ -8,9 +8,6 @@ configs:
   gatus-config:
     file: ./config/config.yaml
 
-volumes:
-  gatus-data:
-
 services:
   gatus:
     image: twinproduction/gatus:latest
@@ -32,3 +29,11 @@ services:
         - traefik.http.routers.uptime.tls=true
         - traefik.http.routers.uptime.tls.certresolver=letsencrypt
         - traefik.http.services.uptime.loadbalancer.server.port=8080
+
+volumes:
+  termix-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=192.168.100.75,nfsvers=4,rw,noatime
+      device: ":/mnt/aegis/docker-volumes/gatus-data"

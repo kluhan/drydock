@@ -6,7 +6,7 @@ endpoints:
   - name: Komodo
     group: core
     url: "https://komodo.kluhan.dev/"
-    interval: 5m
+    interval: 1m
     conditions:
       - "[STATUS] == 200"
       - "[CERTIFICATE_EXPIRATION] > 48h"
@@ -14,20 +14,29 @@ endpoints:
   - name: Fenrir
     group: hardware
     url: "https://fenrir.kluhan.dev/"
-    interval: 5m
+    interval: 1m
     conditions:
       - "[STATUS] == 200"
 
   - name: Draugr
     group: hardware
     url: "https://draugr.kluhan.dev/"
-    interval: 5m
+    interval: 1m
     conditions:
       - "[STATUS] == 200"
 
   - name: TrueNAS
     group: core
     url: "https://true-nas.kluhan.dev/"
-    interval: 5m
+    interval: 1m
     conditions:
       - "[STATUS] == 200"
+
+  - name: Termix
+    group: core
+    url: "https://termix.kluhan.dev/"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
+      

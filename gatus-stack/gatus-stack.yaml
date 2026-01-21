@@ -31,7 +31,7 @@ services:
         - traefik.http.services.uptime.loadbalancer.server.port=8080
 
 volumes:
-  termix-data:
+  gatus-data:
     driver: local
     driver_opts:
       type: nfs

@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    networks:
+      - traefik-public
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: "homepage.kluhan.dev,home.kluhan.dev"
+    volumes:
+      - homepage-data:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+          # - node.hostname == polaris
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.homepage.rule=Host(`homepage.kluhan.dev`) || Host(`home.kluhan.dev`)
+        - traefik.http.routers.homepage.entrypoints=websecure
+        - traefik.http.routers.homepage.tls=true
+        - traefik.http.routers.homepage.tls.certresolver=letsencrypt
+        - traefik.http.services.homepage.loadbalancer.server.port=3000
+      restart_policy:
+        condition: on-failure
+
+networks:
+  traefik-public:
+    external: true
+
+volumes:
+  homepage-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=truenas.lan,nfsvers=4,rw,noatime
+      device: ":/mnt/aegis/docker-volumes/homepage-data"

@@ -39,7 +39,7 @@ services:
           # - node.hostname == polaris
       labels:
         - traefik.enable=true
-        - traefik.http.routers.stirling.rule=Host(`stirling.kluhan.dev`)
+        - traefik.http.routers.stirling.rule=Host(`stirling.kluhan.dev`) || Host(`pdf.kluhan.dev`)
         - traefik.http.routers.stirling.entrypoints=websecure
         - traefik.http.routers.stirling.tls=true
         - traefik.http.routers.stirling.tls.certresolver=letsencrypt

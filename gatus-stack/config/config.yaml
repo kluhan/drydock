@@ -46,4 +46,11 @@ endpoints:
     conditions:
       - "[STATUS] == 200"
 
+  - name: Stirling-PDF
+    group: service
+    url: "https://pdf.kluhan.dev/"
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+
       

@@ -51,6 +51,6 @@ endpoints:
     url: "https://pdf.kluhan.dev/"
     interval: 1m
     conditions:
-      - "[STATUS] == 401 || [STATUS] == 200"
+      - "[STATUS] == 401"
 
       
